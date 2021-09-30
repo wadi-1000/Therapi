@@ -52,4 +52,4 @@ If any problems arise contact me at:
 
 ### License
 
-[Here] ()
+[Here] (https://raw.githubusercontent.com/wadi-1000/Therapi/master/LICENSE)
