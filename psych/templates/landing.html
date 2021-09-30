@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{% load bootstrap5 %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+       <img src="https://wallpapercave.com/wp/wp2031298.jpg" alt="">
+       </div>
+    </div>
+
+    <div class="col-md-6">
+        
+        <h1>Welcome to Therapi</h1>
+        <p>Therapi is an application that promotes mental health awarenesss in the society working together to improve their quality of life.</p>
+        
+        <p>The aim is to bring together Kenyans by sensitizing mental health.</p>
+         
+        <p style="color: salmon; font-weight: bold;">Mental health is important!</p>
+
+        <a href="{% url 'register'  %}" class="btn btn-outline-success btn-sm">Register Now</a>
+
+        
+    </div>
+</div>
+</div>
+{% endblock %}

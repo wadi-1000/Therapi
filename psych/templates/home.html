@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{% load bootstrap5 %}
+{%load static%}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<header class="py-3 mb-4 border-bottom shadow">
+    <div class="container-fluid align-items-center d-flex">
+        <div class="flex-shrink-1">
+            <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
+                <i class="bi bi-bootstrap fs-2 text-dark"></i>
+            </a>
+        </div>
+        <div class="flex-grow-1 d-flex align-items-center" id="nav">
+            <a class="navbar-brand" href="{% url 'articles' %}" >Therapi</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'articles'%}" id="txt">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'add_article'%}" id="txt" >New Article</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'make_appointment'%}" id="txt" >Find Support</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'appointments'%}" id="txt" >Appointments</a>
+
+            <div class="flex-shrink-0 dropdown"style="margin-left: auto;" >
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false" style="color: blue;">
+                    <!-- <img src="" alt="avatar" width="32" height="32" class="rounded-circle"> -->
+                    @{{user.username}}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="border-radius: 5px;">
+                    <li><a class="dropdown-item" href="{%url 'profile'%}">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{%url 'logout'%}">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <img src="https://wallpapercave.com/wp/wp7353122.jpg" alt="" style="width: 100%; height: 100vh;">
+ 
+</div>
+        <!-- <aside class="col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3">
+            <div class="bg-light border rounded-3 p-1 h-100 sticky-top">
+                <ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
+                    <li class="nav-item">
+                        <a href="{%url 'articles'%}" class="nav-link px-2 text-truncate">
+                            <i class="bi bi-house fs-5"></i>
+                            <span class="d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 text-truncate">
+                            <i class="bi bi-speedometer fs-5"></i>
+                            <span class="d-none d-sm-inline">Find support</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{%url 'add_article'%}" class="nav-link px-2 text-truncate">
+                            <i class="bi bi-speedometer fs-5"></i>
+                            <span class="d-none d-sm-inline">New Article</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside> -->
+        <main class="col overflow-auto h-100">
+          
+                {% for article in article %}
+                <p>
+                  <div class="gallery">
+                      <div class="card">
+                      <img src="{{article.pic.url}}" alt="article pic" width="600" height="400">
+                      <div class="desc"><h5>{{article.title}}</h5></div>
+                    <div class="desc"><p>By: {{article.author}}</p></div>
+                    <a href="{% url 'single_article' article.id %}" class="btn btn-outline-secondary btn-sm">More</a>                
+                
+                    </div>
+                  </div>
+                  </p>
+                  {%endfor%}
+  
+            
+        </main>
+        <br><br><br>
+    
+
+<!-- Site footer -->
+<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>Misson</h6>
+          <p class="text-justify">Mental illness is a general term for a group of illnesses that may include symptoms that can affect a person’s thinking, perceptions, mood or behaviour. Our main aim at Therapi is to promote mental health awarenesss through psychotherapy.Psychotherapy is the therapeutic treatment of mental illness provided by a trained mental health professional. Psychotherapy explores thoughts, feelings, and behaviors, and seeks to improve an individual's well-being. Psychotherapy paired with medication is the most effective way to promote recovery.
+        </p>
+        </div>
+        <h6>Contact</h6>
+        <p>For more information call us on: 0800555674</p></li>
+    </div>
+</div>
+</footer>
+{%endblock%}

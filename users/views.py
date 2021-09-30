@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm,  ProfileUpdateForm
 from .models import Profile
-
+from psych.models import Appointments
 
 
 def register(request):
@@ -19,6 +19,7 @@ def register(request):
 
 
 def profile(request):
+    appointments = Appointments.display_all_objects().order_by('-date')
     profile = Profile.objects.get_or_create(name=request.user)
     if request.method =='POST':
         profile_update_form = ProfileUpdateForm(request.POST or None, request.FILES, instance=request.user.profile)
@@ -30,6 +31,7 @@ def profile(request):
 
     context = {
         'profile_update_form': profile_update_form,
+        'appointments':appointments
        
     }
     return render(request, 'users/profile.html', context)

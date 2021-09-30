@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<header class="py-3 mb-4 border-bottom shadow">
+    <div class="container-fluid align-items-center d-flex">
+        <div class="flex-shrink-1">
+            <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
+                <i class="bi bi-bootstrap fs-2 text-dark"></i>
+            </a>
+        </div>
+        <div class="flex-grow-1 d-flex align-items-center" id="nav">
+            <a class="navbar-brand" href="{% url 'articles' %}" >Therapi</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'articles'%}" id="txt">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'add_article'%}" id="txt" >New Article</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'make_appointment'%}" id="txt" >Find Support</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'appointments'%}" id="txt" >Appointments</a>
+
+            <div class="flex-shrink-0 dropdown"style="margin-left: auto;" >
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false" style="color: blue;">
+                    <!-- <img src="" alt="avatar" width="32" height="32" class="rounded-circle"> -->
+                    @{{user.username}}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="border-radius: 5px;">
+                    <li><a class="dropdown-item" href="{%url 'profile'%}">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{%url 'logout'%}">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid upload-appointment">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 uploadform">
+            <legend style="text-align: center;">Make an Appointment</legend>
+            <form method ="POST" enctype="multipart/form-data" action="{% url 'make_appointment' %}">
+                {% csrf_token %}
+
+                {% bootstrap_form form %}
+
+                <input type="submit" value="Book" class="btn btn-success btn-block btn-md">
+            </form>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+{% endblock %}
